@@ -1,0 +1,14 @@
+language: rust
+
+rust:
+    - stable
+    - beta
+    - nightly
+
+cache: cargo
+
+script:
+    - cargo build --verbose
+    - rm -f target/debug/flow-*
+    - if [ "$(rustup show | grep default | grep 1.40.0)" != ""]; then cargo test --verbose; fi
+
